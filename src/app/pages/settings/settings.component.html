@@ -1,0 +1,46 @@
+<div class="min-h-screen flex flex-col items-center justify-center p-4 text-center">
+  <h1 class="text-2xl font-bold mb-4">Configurações do Teste BART</h1>
+
+  <form [formGroup]="form" class="w-full max-w-sm space-y-4">
+    <label class="block text-left">
+      <span class="block mb-1 font-medium">Número total de balões</span>
+      <input
+        type="number"
+        formControlName="totalBalloons"
+        class="w-full rounded border p-2"
+        min="1"
+      />
+    </label>
+
+    <label class="block text-left">
+      <span class="block mb-1 font-medium">Probabilidade inicial de estouro (threshold)</span>
+      <input
+        type="number"
+        formControlName="maxPumpThreshold"
+        class="w-full rounded border p-2"
+        min="1"
+      />
+    </label>
+
+    <label class="block text-left">
+      <span class="block mb-1 font-medium">Reais por clique</span>
+      <input
+        type="number"
+        formControlName="centsPerPump"
+        class="w-full rounded border p-2"
+        min="0.01"
+        step="0.01"
+      />
+    </label>
+
+    <button
+      type="button"
+      (click)="save()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded"
+    >Salvar Configurações</button>
+  </form>
+
+  <p *ngIf="saved()" class="mt-4 text-green-600 font-medium">Configurações atualizadas com sucesso!</p>
+
+  <a routerLink="/" class="mt-6 inline-block text-blue-600 hover:underline">Voltar para a página inicial</a>
+</div>

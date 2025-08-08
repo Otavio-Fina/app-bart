@@ -1,0 +1,40 @@
+<div class="min-h-screen flex flex-col items-center justify-center gap-6 p-4 text-center">
+  <h2 class="text-lg font-semibold">Balão {{ bart.balloon().index + 1 }} de {{ bart.totalBalloons() }}</h2>
+
+  <!-- Balloon visual -->
+  <div class="relative">
+    <div
+      class="bg-blue-400 rounded-full transition-transform duration-200 ease-out"
+      [style.width.px]="50 + bart.balloon().pumpCount * 5"
+      [style.height.px]="50 + bart.balloon().pumpCount * 5"
+      [class.opacity-40]="bart.balloon().exploded"
+    ></div>
+    <div *ngIf="bart.balloon().exploded" class="absolute inset-0 flex items-center justify-center text-red-700 font-bold">
+      💥
+    </div>
+  </div>
+
+  <!-- Scores -->
+  <div class="flex gap-4">
+    <div class="bg-gray-100 rounded p-2">Reais no Balão: <strong>{{ (bart.balloon().pointsInBalloon / 100) | currency:'BRL':'symbol':'1.2-2' }}</strong></div>
+    <div class="bg-gray-100 rounded p-2">Total de Reais: <strong>{{ (bart.totalPoints() / 100) | currency:'BRL':'symbol':'1.2-2' }}</strong></div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="flex gap-4">
+    <button
+      (click)="inflate()"
+      class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
+      [disabled]="bart.balloon().exploded"
+    >Inflar Balão</button>
+    <button
+      (click)="collect()"
+      class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700"
+    >Coletar Pontos</button>
+  </div>
+
+  <a
+      routerLink="/settings"
+      class="px-4 py-2 rounded bg-gray-600 text-white hover:bg-gray-700"
+    >Ir para as configurações</a>
+</div>

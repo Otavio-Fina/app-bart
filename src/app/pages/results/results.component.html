@@ -1,0 +1,112 @@
+<div class="min-h-screen flex flex-col items-center justify-center gap-6 p-4 text-center">
+  <h1 class="text-3xl font-bold">Resultados do Teste BART</h1>
+
+  <!-- Main Score -->
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-md">
+    <h2 class="text-xl font-semibold mb-4">Pontuação Final</h2>
+    <div class="text-4xl font-bold text-blue-600 mb-4">
+      {{ (bart.totalPoints() / 100) | currency:'BRL':'symbol':'1.2-2' }}
+    </div>
+    <p class="text-gray-600">
+      Você completou {{ totalBalloons() }} balões
+    </p>
+  </div>
+
+  <!-- Detailed Statistics -->
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-2xl w-full">
+    <h2 class="text-xl font-semibold mb-4">Estatísticas Detalhadas</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Pump Statistics -->
+      <div class="space-y-3">
+        <h3 class="font-semibold text-lg">Estatísticas de Pumps</h3>
+        <div class="space-y-2 text-left">
+          <div class="flex justify-between">
+            <span>Total de Pumps:</span>
+            <strong>{{ totalPumps() }}</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Média de Pumps por Balão:</span>
+            <strong>{{ averagePumps() | number:'1.1-1' }}</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Máximo de Pumps em um Balão:</span>
+            <strong>{{ maxPumpsInBalloon() }}</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Mínimo de Pumps em um Balão:</span>
+            <strong>{{ minPumpsInBalloon() }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Balloon Statistics -->
+      <div class="space-y-3">
+        <h3 class="font-semibold text-lg">Estatísticas de Balões</h3>
+        <div class="space-y-2 text-left">
+          <div class="flex justify-between">
+            <span>Balões Coletados:</span>
+            <strong class="text-green-600">{{ collectedBalloons() }}</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Balões Explodidos:</span>
+            <strong class="text-red-600">{{ explodedBalloons() }}</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Taxa de Sucesso:</span>
+            <strong>{{ (totalBalloons() > 0 ? (collectedBalloons() / totalBalloons() * 100) : 0) | number:'1.0-0' }}%</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Ganhos Totais:</span>
+            <strong>{{ (totalEarnings() / 100) | currency:'BRL':'symbol':'1.2-2' }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Balloon by Balloon Details -->
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-4xl w-full">
+    <h2 class="text-xl font-semibold mb-4">Detalhes Balão por Balão</h2>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b">
+            <th class="text-left p-2">Balão</th>
+            <th class="text-left p-2">Pumps</th>
+            <th class="text-left p-2">Resultado</th>
+            <th class="text-left p-2">Pontos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let balloon of bart.balloonResults()" class="border-b hover:bg-gray-50">
+            <td class="p-2">{{ balloon.balloonIndex + 1 }}</td>
+            <td class="p-2">{{ balloon.pumps }}</td>
+            <td class="p-2">
+              <span *ngIf="balloon.collected" class="text-green-600 font-semibold">✓ Coletado</span>
+              <span *ngIf="balloon.exploded" class="text-red-600 font-semibold">💥 Explodiu</span>
+            </td>
+            <td class="p-2">
+              <span *ngIf="balloon.collected">{{ (balloon.points / 100) | currency:'BRL':'symbol':'1.2-2' }}</span>
+              <span *ngIf="balloon.exploded" class="text-red-600">R$ 0,00</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex gap-4">
+    <button
+      (click)="restart()"
+      routerLink="/test"
+      class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded transition"
+    >Fazer Novo Teste</button>
+    <a
+      routerLink="/"
+      class="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded transition"
+    >Voltar ao Início</a>
+  </div>
+</div>
