@@ -101,7 +101,6 @@ export class BartService {
     // Progressão: 1ª tentativa = 1/128, 2ª = 1/127, 3ª = 1/126, etc.
     const remainingThreshold = this.maxPumpThreshold() - pumpCount;
     if (remainingThreshold <= 0) return true; // Sempre explode se não há mais "espaço"
-    console.log('remainingThreshold', remainingThreshold);
     
     const randomValue = Math.floor(Math.random() * remainingThreshold) + 1;
     return randomValue === 1; // Explode se o valor aleatório for 1
