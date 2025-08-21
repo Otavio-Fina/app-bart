@@ -5,3 +5,16 @@
   0% { transform: scale(1); opacity: 1; }
   100% { transform: scale(1.5); opacity: 0; }
 }
+
+/* Garantir que o container principal ocupe toda a altura da tela */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* Estilos para os botões fixos */
+.controls-container {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  z-index: 10;
+}

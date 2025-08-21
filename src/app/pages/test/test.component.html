@@ -1,40 +1,49 @@
-<div class="min-h-screen flex flex-col items-center justify-center gap-6 p-4 text-center">
-  <h2 class="text-lg font-semibold">Balão {{ bart.balloon().index + 1 }} de {{ bart.totalBalloons() }}</h2>
+<div class="min-h-screen flex flex-col">
+  <!-- Conteúdo principal (centrado) -->
+  <div class="flex-1 flex flex-col items-center justify-center gap-6 p-4 text-center">
+    <h2 class="text-lg font-semibold">Balão {{ bart.balloon().index + 1 }} de {{ bart.totalBalloons() }}</h2>
 
-  <!-- Balloon visual -->
-  <div class="relative">
-    <div
-      class="bg-blue-400 rounded-full transition-transform duration-200 ease-out"
-      [style.width.px]="50 + bart.balloon().pumpCount * 5"
-      [style.height.px]="50 + bart.balloon().pumpCount * 5"
-      [class.opacity-40]="bart.balloon().exploded"
-    ></div>
-    <div *ngIf="bart.balloon().exploded" class="absolute inset-0 flex items-center justify-center text-red-700 font-bold">
-      💥
+    <!-- Balloon visual -->
+    <div class="relative">
+      <div
+        class="bg-blue-400 rounded-full transition-transform duration-200 ease-out"
+        [style.width.px]="50 + bart.balloon().pumpCount * 5"
+        [style.height.px]="50 + bart.balloon().pumpCount * 5"
+        [class.opacity-40]="bart.balloon().exploded"
+      ></div>
+      <div *ngIf="bart.balloon().exploded" class="absolute inset-0 flex items-center justify-center text-red-700 font-bold">
+        💥
+      </div>
+    </div>
+
+    <!-- Scores -->
+    <div class="flex gap-4">
+      <div class="bg-gray-100 rounded p-2">Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
+      <div class="bg-gray-100 rounded p-2">Pontos Totais: <strong>{{ (bart.totalPoints() / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
     </div>
   </div>
 
-  <!-- Scores -->
-  <div class="flex gap-4">
-    <div class="bg-gray-100 rounded p-2">Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
-    <div class="bg-gray-100 rounded p-2">Pontos Totais: <strong>{{ (bart.totalPoints() / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
+  <!-- Botões fixos na parte inferior -->
+  <div class="controls-container p-4 bg-white border-t border-gray-200">
+    <div class="flex flex-col gap-4 max-w-md mx-auto">
+      <!-- Botões principais -->
+      <div class="flex gap-4">
+        <button
+          (click)="inflate()"
+          class="flex-1 px-4 py-3 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 font-medium"
+          [disabled]="bart.balloon().exploded"
+        >Inflar Balão</button>
+        <button
+          (click)="collect()"
+          class="flex-1 px-4 py-3 rounded bg-green-600 text-white hover:bg-green-700 font-medium"
+        >Coletar Pontos</button>
+      </div>
+      
+      <!-- Botão de configurações -->
+      <a
+        routerLink="/settings"
+        class="px-4 py-3 rounded bg-gray-600 text-white hover:bg-gray-700 text-center font-medium"
+      >Ir para as configurações</a>
+    </div>
   </div>
-
-  <!-- Buttons -->
-  <div class="flex gap-4">
-    <button
-      (click)="inflate()"
-      class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
-      [disabled]="bart.balloon().exploded"
-    >Inflar Balão</button>
-    <button
-      (click)="collect()"
-      class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700"
-    >Coletar Pontos</button>
-  </div>
-
-  <a
-      routerLink="/settings"
-      class="px-4 py-2 rounded bg-gray-600 text-white hover:bg-gray-700"
-    >Ir para as configurações</a>
 </div>
