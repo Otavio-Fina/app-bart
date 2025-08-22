@@ -1,0 +1,35 @@
+/* Estilos específicos para o componente IGT Test */
+
+/* Animação para os cards de resultado */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-card {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Efeito de hover nos decks */
+.deck-button:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .deck-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .deck-button {
+    width: 6rem;
+    height: 9rem;
+  }
+} 

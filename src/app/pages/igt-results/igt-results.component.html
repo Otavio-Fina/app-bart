@@ -1,0 +1,121 @@
+<div class="min-h-screen flex flex-col items-center justify-center gap-6 p-4 text-center">
+  <h1 class="text-3xl font-bold">Resultados do Teste IGT</h1>
+
+  <!-- Main Score -->
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-md">
+    <h2 class="text-xl font-semibold mb-4">Saldo Final</h2>
+    <div [ngClass]="igt.obterSaldoTotal() > 0 ? 'text-green-600' : igt.obterSaldoTotal() < 0 ? 'text-red-600' : 'text-gray-600'" class="text-4xl font-bold mb-4 duration-500 ease-in-out transition-all">
+      ${{ igt.obterSaldoTotal() | number:'1.0-0' }}
+    </div>
+    <p class="text-gray-600">
+      Você completou {{ igt.obterNumeroTentativas() }} tentativas
+    </p>
+  </div>
+
+  <!-- Detailed Statistics -->
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-2xl w-full">
+    <h2 class="text-xl font-semibold mb-4">Estatísticas Detalhadas</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Deck Statistics -->
+      <div class="space-y-3">
+        <h3 class="font-semibold text-lg">Estatísticas por Deck</h3>
+        <div class="space-y-2 text-left">
+          <div class="flex justify-between">
+            <span>Deck A escolhido:</span>
+            <strong>{{ getDeckCount('A') }}x</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Deck B escolhido:</span>
+            <strong>{{ getDeckCount('B') }}x</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Deck C escolhido:</span>
+            <strong>{{ getDeckCount('C') }}x</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Deck D escolhido:</span>
+            <strong>{{ getDeckCount('D') }}x</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Statistics -->
+      <div class="space-y-3">
+        <h3 class="font-semibold text-lg">Estatísticas Financeiras</h3>
+        <div class="space-y-2 text-left">
+          <div class="flex justify-between">
+            <span>Ganhos Totais:</span>
+            <strong class="text-green-600">${{ totalGanhos() | number:'1.0-0' }}</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Taxas Totais:</span>
+            <strong class="text-red-600">${{ totalTaxas() | number:'1.0-0' }}</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Média de Tempo por Escolha:</span>
+            <strong>{{ mediaTempoEscolha() | number:'1.0-0' }}ms</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Deck Mais Escolhido:</span>
+            <strong>{{ getDeckMaisEscolhido() }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deck by Deck Details -->
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-4xl w-full">
+    <h2 class="text-xl font-semibold mb-4">Detalhes Tentativa por Tentativa</h2>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b">
+            <th class="text-center p-2">Tentativa</th>
+            <th class="text-center p-2">Deck</th>
+            <th class="text-center p-2">Ganho</th>
+            <th class="text-center p-2">Taxa</th>
+            <th class="text-center p-2">Saldo</th>
+            <th class="text-center p-2">Tempo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tentativa of igt.obterTentativas(); let i = index" class="border-b hover:bg-gray-50">
+            <td class="p-2 text-center">{{ i + 1 }}</td>
+            <td class="p-2 text-center">
+              <span class="font-bold text-blue-600">{{ tentativa.deck }}</span>
+            </td>
+            <td class="p-2 text-center">
+              <span class="text-green-600 font-semibold">+${{ tentativa.ganho | number:'1.0-0' }}</span>
+            </td>
+            <td class="p-2 text-center">
+              <span *ngIf="tentativa.taxa > 0" class="text-red-600 font-semibold">-${{ tentativa.taxa | number:'1.0-0' }}</span>
+              <span *ngIf="tentativa.taxa === 0" class="text-gray-500">$0</span>
+            </td>
+            <td class="p-2 text-center">
+              <span [ngClass]="tentativa.saldoNovo > 0 ? 'text-green-500' : tentativa.saldoNovo < 0 ? 'text-red-500' : 'text-gray-600'" class="font-semibold">${{ tentativa.saldoNovo | number:'1.0-0' }}</span>
+            </td>
+            <td class="p-2 text-center">
+              <span class="text-gray-600">{{ tentativa.tempoEscolha }}ms</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex gap-4">
+    <button
+      (click)="restart()"
+      routerLink="/igt-test"
+      class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded transition"
+    >Fazer Novo Teste IGT</button>
+    <a
+      routerLink="/igt"
+      class="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded transition"
+    >Voltar ao IGT</a>
+  </div>
+</div>
