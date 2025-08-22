@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IgtService, Tentativa } from '../../services/igt.service';
 
@@ -24,6 +24,17 @@ export class IgtTestComponent implements OnInit {
   constructor(private igtService: IgtService) {}
   
   ngOnInit(): void {
+    // Limpar dados da tentativa anterior
+    this.igtService.resetarTeste();
+    
+    // Limpar variáveis locais do componente
+    this.ultimaEscolha = '';
+    this.saldoTotal = 0;
+    this.tentativas = 0;
+    this.ganho = 0;
+    this.taxa = 0;
+    this.mostrandoResultado = false;
+    
     // Inicializar com dados da service
     this.atualizarDados();
     
@@ -56,4 +67,5 @@ export class IgtTestComponent implements OnInit {
     this.saldoTotal = this.igtService.obterSaldoTotal();
     this.tentativas = this.igtService.obterNumeroTentativas();
   }
+  
 } 

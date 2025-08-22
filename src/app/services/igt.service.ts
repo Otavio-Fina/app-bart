@@ -170,6 +170,13 @@ export class IgtService {
   resetarTeste(): void {
     this.tentativas = new Array(this.maxTentativas).fill(null);
     this.saldoTotal = 0;
+    this.tempoInicioEscolha = 0
+    
+    // Recarregar arrays de resultados para garantir que estejam completos
+    this.resultadosA = [...this.constanteResultadosA];
+    this.resultadosB = [...this.constanteResultadosB];
+    this.resultadosC = [...this.constanteResultadosC];
+    this.resultadosD = [...this.constanteResultadosD];
   }
 
   // Definir saldo inicial
