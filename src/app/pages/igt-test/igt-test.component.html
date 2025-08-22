@@ -23,9 +23,9 @@
 
   <!-- Área Central - Cards de Resultado -->
   <div class="flex justify-center mb-12 m-14 2xl:mt-24  ">
-    <div class="flex gap-4" *ngIf="mostrandoResultado">
+    <div class="flex 2xl:gap-8 gap-6" *ngIf="mostrandoResultado">
       <!-- Card de Ganho -->
-      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-4 2xl:p-10 2xl:pt-8 border-2 border-green-200 2xl:w-52 w-36 2xl:h-64 h-48 relative">
+      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-4 2xl:p-10 2xl:pt-8 border-2 border-green-200 2xl:w-48 w-40 2xl:h-64 h-52 relative">
         <div class="text-center flex flex-col items-center justify-between h-full">
           <div>
             <div class="text-4xl mb-2">🎉</div>
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Card de Taxa (só aparece se houver taxa) -->
-      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-4 2xl:p-10 2xl:pt-8 border-2 border-red-200 2xl:w-52 w-36 2xl:h-64 h-48 relative" *ngIf="taxa > 0">
+      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-4 2xl:p-10 2xl:pt-8 border-2 border-red-200 2xl:w-48 w-40 2xl:h-64 h-52 relative" *ngIf="taxa > 0">
         <div class="text-center flex flex-col items-center justify-between h-full">
           <div>
             <div class="text-4xl mb-2">💸</div>
