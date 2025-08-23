@@ -106,6 +106,68 @@
     </div>
   </div>
 
+  <!-- Email Results Section -->
+<!--<div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-md w-full">
+    <h2 class="text-xl font-semibold mb-4">Enviar Resultados por Email</h2>
+    
+    <div class="space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email para envio:</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="emailDestino"
+          placeholder="seu@email.com"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          [disabled]="enviando"
+        >
+      </div>
+      
+      <button
+        (click)="enviarResultadosPorEmail()"
+        [disabled]="!emailDestino || enviando"
+        class="w-full px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white font-medium rounded transition flex items-center justify-center gap-2"
+      >
+        <span *ngIf="!enviando">📧 Enviar Resultados</span>
+        <span *ngIf="enviando" class="flex items-center gap-2">
+          <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Enviando...
+        </span>
+      </button>
+      
+
+      <div *ngIf="statusMensagem" class="text-sm p-3 rounded-md" [ngClass]="statusSucesso ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
+        {{ statusMensagem }}
+      </div>
+    </div>
+  </div>-->
+
+  <!-- Download CSV Section -->
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-md w-full">
+    <h2 class="text-xl font-semibold mb-4">📥 Baixar Resultados CSV</h2>
+    
+    <div class="space-y-4">
+      <p class="text-sm text-gray-600 mb-4">
+        Baixe os resultados em formato CSV para análise em Excel, Google Sheets ou outros programas.
+      </p>
+      
+      <button
+        (click)="baixarCSV()"
+        class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded transition flex items-center justify-center gap-2"
+      >
+        📊 Baixar CSV
+      </button>
+      
+      <div class="text-xs text-gray-500 text-center">
+        <p>O arquivo inclui todas as tentativas e estatísticas</p>
+        <p>Formato: resultados_igt_[data]_[timestamp].csv</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Action Buttons -->
   <div class="flex gap-4">
     <button
