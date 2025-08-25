@@ -73,10 +73,10 @@
       <table class="w-full text-sm">
         <thead>
           <tr class="border-b">
-            <th class="text-left p-2">Balão</th>  
-            <th class="text-left p-2">Pumps</th>
-            <th class="text-left p-2">Resultado</th>
-            <th class="text-left p-2">Pontos</th>
+            <th class="text-center p-2">Balão</th>  
+            <th class="text-center p-2">Pumps</th>
+            <th class="text-center p-2">Resultado</th>
+            <th class="text-center p-2">Pontos</th>
           </tr>
         </thead>
         <tbody>
@@ -94,6 +94,28 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="bg-white/70 backdrop-blur-md rounded-lg shadow p-6 max-w-md w-full my-10">
+    <h2 class="text-xl font-semibold mb-4">📥 Baixar Resultados CSV</h2>
+    
+    <div class="space-y-4">
+      <p class="text-sm text-gray-600 mb-4">
+        Baixe os resultados em formato CSV para análise em Excel, Google Sheets ou outros programas.
+      </p>
+      
+      <button
+        (click)="baixarCSV()"
+        class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded transition flex items-center justify-center gap-2"
+      >
+        📊 Baixar CSV
+      </button>
+      
+      <div class="text-xs text-gray-500 text-center">
+        <p>O arquivo inclui todas as tentativas e estatísticas</p>
+        <p>Formato: resultados_igt_[data]_[timestamp].csv</p>
+      </div>
     </div>
   </div>
 

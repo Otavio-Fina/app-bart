@@ -26,4 +26,43 @@ export class ResultsComponent {
   restart() {
     this.bart.restart();
   }
+
+  // Geração de CSV dos resultados do BART
+  private gerarCSV(): string {
+    const results = this.bart.balloonResults();
+
+    // Cabeçalho
+    let csv = 'Balao,Pumps,Coletado,Explodiu,Pontos (centavos),Pontos (USD)\n';
+
+    // Linhas
+    results.forEach((r) => {
+      const usd = (r.points / 100).toFixed(2);
+      csv += `${r.balloonIndex + 1},${r.pumps},${r.collected ? 'Sim' : 'Não'},${r.exploded ? 'Sim' : 'Não'},${r.points},$${usd}\n`;
+    });
+
+
+    return csv;
+  }
+
+  // Download direto do CSV
+  baixarCSV(): void {
+    try {
+      const csvContent = this.gerarCSV();
+      const csvBlob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const fileName = `resultados_bart_${new Date().toISOString().split('T')[0]}_${Date.now()}.csv`;
+
+      const url = window.URL.createObjectURL(csvBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      
+      console.log('CSV BART baixado com sucesso:', fileName);
+    } catch (err) {
+      console.error('Erro ao baixar CSV BART:', err);
+    }
+  }
 }

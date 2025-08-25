@@ -16,18 +16,24 @@
       </div>
     </div>
 
-    <!-- Scores -->
-    <div class="flex gap-4">
-      <div class="bg-gray-100 rounded p-2">Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
-      <div class="bg-gray-100 rounded p-2">Pontos Totais: <strong>{{ (bart.totalPoints() / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
-    </div>
   </div>
 
+
+  <div class="flex justify-center">
+    <div class="bg-gray-50 rounded-lg shadow border px-5 py-3 flex items-center gap-4 text-lg mb-6">
+      <div>Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
+      <div class="h-4 w-px bg-gray-300"></div>
+      <div>Pontos Totais: <strong>{{ (bart.totalPoints() / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
+    </div>
+  </div>
   <!-- Botões fixos na parte inferior -->
   <div class="controls-container p-4 bg-white border-t border-gray-200">
     <div class="flex flex-col gap-4 max-w-md mx-auto">
+      <!-- Mini card com Scores acima dos botões -->
+      
+
       <!-- Botões principais -->
-      <div class="flex gap-4">
+      <div class="flex gap-4 ">
         <button
           (click)="inflate()"
           class="flex-1 px-4 py-3 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 font-medium"
