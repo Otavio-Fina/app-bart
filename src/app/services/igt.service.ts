@@ -19,8 +19,8 @@ export class IgtService {
   private maxTentativas: number = 100;
   private tempoInicioEscolha: number = 0;
 
-  constanteResultadosA = [{ganho: 100, taxa: 150}, {ganho: 100, taxa: 200}, {ganho: 100, taxa: 250}, {ganho: 100, taxa: 300}, {ganho: 100, taxa: 350}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}]
-  constanteResultadosB = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}]
+  constanteResultadosA = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}]
+  constanteResultadosB = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}]
   constanteResultadosC = [{ganho: 50, taxa: 25}, {ganho: 50, taxa: 25}, {ganho: 50, taxa: 50}, {ganho: 50, taxa: 75}, {ganho: 50, taxa: 75}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}]
   constanteResultadosD = [{ganho: 50, taxa: 250}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}]
 

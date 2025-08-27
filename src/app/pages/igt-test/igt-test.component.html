@@ -1,4 +1,4 @@
-<div class="h-screen w-screen bg-gradient-to-br from-green-50 to-blue-50 p-6">
+ <div class="h-screen w-screen bg-gradient-to-br from-green-50 to-blue-50 p-6 pt-2">
   <!-- Header com Botão Voltar, Saldo Centralizado e Tentativas -->
   <div class="flex justify-between items-center mb-8">
     <!-- Botão Voltar à esquerda -->
@@ -9,7 +9,7 @@
     </div>
     
     <!-- Saldo Total centralizado -->
-    <div class="bg-white/80 backdrop-blur-md -mr-6 rounded-lg shadow-lg p-8">
+    <div class="bg-white/80 backdrop-blur-md -mr-6 rounded-lg shadow-lg p-4">
       <h2 class="text-lg font-semibold text-gray-700 mb-1">Saldo Total</h2>
       <div [ngClass]="saldoTotal > 0 ? 'text-green-600' : saldoTotal < 0 ? 'text-red-600' : 'text-gray-600'" class="text-3xl font-bold duration-500 ease-in-out transition-all">${{ saldoTotal.toLocaleString() }}</div>
     </div>
@@ -17,15 +17,15 @@
     <!-- Tentativas à direita -->
     <div class="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-4">
       <h2 class="text-lg font-semibold text-gray-700 mb-1">Tentativas</h2>
-      <div class="text-3xl font-bold text-blue-600">{{ tentativas }}/{{ maxTentativas }}</div>
+      <div class="text-2xl font-bold text-blue-600">{{ tentativas }}/{{ maxTentativas }}</div>
     </div>
   </div>
 
   <!-- Área Central - Cards de Resultado -->
-  <div class="flex justify-center mb-12 m-14 2xl:mt-24  ">
+  <div class="flex justify-center mb-12 m-8 2xl:mt-24  ">
     <div class="flex 2xl:gap-8 gap-6" *ngIf="mostrandoResultado">
       <!-- Card de Ganho -->
-      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-4 2xl:p-10 2xl:pt-8 border-2 border-green-200 2xl:w-48 w-40 2xl:h-64 h-52 relative">
+      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-2 pb-6 2xl:p-10 2xl:pb-10 2xl:pt-8 border-2 border-green-200 2xl:w-44 w-36 2xl:h-56 h-44 relative">
         <div class="text-center flex flex-col items-center justify-between h-full">
           <div>
             <div class="text-4xl mb-2">🎉</div>
@@ -38,11 +38,11 @@
       </div>
 
       <!-- Card de Taxa (só aparece se houver taxa) -->
-      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-4 2xl:p-10 2xl:pt-8 border-2 border-red-200 2xl:w-48 w-40 2xl:h-64 h-52 relative" *ngIf="taxa > 0">
+      <div class="bg-white/90 backdrop-blur-md rounded-xl shadow-xl  p-2 pb-6 2xl:p-10 2xl:pb-10 2xl:pt-8 border-2 border-red-200 2xl:w-44 w-36  2xl:h-56 h-44 relative" *ngIf="taxa > 0">
         <div class="text-center flex flex-col items-center justify-between h-full">
           <div>
             <div class="text-4xl mb-2">💸</div>
-            <h3 class="text-xl font-bold text-red-700 mb-2">Taxa</h3>
+            <h3 class="2xl:text-xl text-lg font-bold text-red-700 mb-2">Taxa</h3>
           </div>
           <div class="text-3xl font-bold text-red-600">-${{ taxa }}</div>
           <p class="text-red-600 mt-2">Deck {{ ultimaEscolha }}</p>
@@ -53,14 +53,14 @@
   </div>
 
   <!-- Área dos Decks -->
-  <div class="flex justify-center fixed bottom-8 left-0 right-0">
+  <div class="flex justify-center fixed bottom-4 left-0 right-0">
     <div class="grid grid-cols-4 gap-6">
       <!-- Deck A -->
       <div class="text-center">
         <button 
           (click)="escolherDeck('A')"
           [disabled]="tentativas >= maxTentativas"
-          class="w-32 h-48 2xl:w-36 2xl:h-52 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">A</div>
           </div>
@@ -73,7 +73,7 @@
         <button 
           (click)="escolherDeck('B')"
           [disabled]="tentativas >= maxTentativas"
-          class="w-32 h-48 2xl:w-36 2xl:h-52 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">B</div>
           </div>
@@ -86,7 +86,7 @@
         <button 
           (click)="escolherDeck('C')"
           [disabled]="tentativas >= maxTentativas"
-          class="w-32 h-48 2xl:w-36 2xl:h-52 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">C</div>
           </div>
@@ -99,7 +99,7 @@
         <button 
           (click)="escolherDeck('D')"
           [disabled]="tentativas >= maxTentativas"
-          class="w-32 h-48 2xl:w-36 2xl:h-52 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">D</div>
           </div>
