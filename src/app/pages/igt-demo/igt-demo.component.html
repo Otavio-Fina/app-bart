@@ -18,9 +18,9 @@
     
     <!-- Tentativas à direita -->
     <div class="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-4">
-      <h2 class="text-lg font-semibold text-gray-700">Tentativas</h2>   
-      <div class="text-2xl font-bold text-blue-600">{{ tentativas }}</div>
-      <p class="text-xs text-gray-500">Infinitas</p>
+      <h2 class="text-lg font-semibold text-gray-700">Tentativas (Demo)</h2>   
+      <div class="text-2xl font-bold text-blue-600">{{ tentativas }}/{{ maxTentativas }}</div>
+      <p class="text-xs text-gray-500">Limite: 2</p>
     </div>
   </div>
 
@@ -62,7 +62,8 @@
       <div class="text-center">
         <button 
           (click)="escolherDeck('A')"
-          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 border-4 border-white">
+          [disabled]="tentativas >= maxTentativas"
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">A</div>
           </div>
@@ -74,7 +75,8 @@
       <div class="text-center">
         <button 
           (click)="escolherDeck('B')"
-          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 border-4 border-white">
+          [disabled]="tentativas >= maxTentativas"
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">B</div>
           </div>
@@ -86,7 +88,8 @@
       <div class="text-center">
         <button 
           (click)="escolherDeck('C')"
-          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 border-4 border-white">
+          [disabled]="tentativas >= maxTentativas"
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">C</div>
           </div>
@@ -98,7 +101,8 @@
       <div class="text-center">
         <button 
           (click)="escolherDeck('D')"
-          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 border-4 border-white">
+          [disabled]="tentativas >= maxTentativas"
+          class="w-28 h-40 2xl:w-32 2xl:h-48 bg-blue-500 hover:bg-opacity-90 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-[98%] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white">
           <div class="flex items-center justify-center h-full">
             <div class="text-white text-4xl font-bold">D</div>
           </div>
@@ -117,5 +121,13 @@
     </a>
   </div>
 
+  <!-- Botão Ver Resultados (aparece quando chegar ao máximo de tentativas) -->
+  <div class="flex justify-center mt-8" *ngIf="tentativas >= maxTentativas">
+    <a 
+      routerLink="/igt-test" 
+      class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold text-xl rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+      🏆 Fazer Teste Real Completo
+    </a>
+  </div>
 
 </div>

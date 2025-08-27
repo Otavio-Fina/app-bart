@@ -12,6 +12,7 @@ export class IgtDemoComponent implements OnInit {
   // Dados do teste
   saldoTotal: number = 0;
   tentativas: number = 0;
+  maxTentativas: number = 2;
   
   // Estado do teste
   ultimaEscolha: string = '';
@@ -47,6 +48,8 @@ export class IgtDemoComponent implements OnInit {
   
   // Função para escolher um deck
   escolherDeck(deck: string) {
+    if (this.tentativas >= this.maxTentativas) return;
+    
     // Registrar escolha
     const resultado = this.simularResultado(deck);
     
