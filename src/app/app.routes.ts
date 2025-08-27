@@ -9,6 +9,7 @@ import { DemoResultsComponent } from './pages/demo-results/demo-results.componen
 import { IgtHomeComponent } from './pages/igt-home/igt-home.component';
 import { IgtTestComponent } from './pages/igt-test/igt-test.component';
 import { IgtResultsComponent } from './pages/igt-results/igt-results.component';
+import { IgtDemoComponent } from './pages/igt-demo/igt-demo.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'igt', component: IgtHomeComponent },
   { path: 'igt-test', component: IgtTestComponent },
   { path: 'igt-results', component: IgtResultsComponent },
+  { path: 'igt-demo', component: IgtDemoComponent },
   { path: '**', redirectTo: '' },
 ];
