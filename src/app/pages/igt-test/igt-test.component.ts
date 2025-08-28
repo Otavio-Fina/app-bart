@@ -11,7 +11,7 @@ import { IgtService, Tentativa } from '../../services/igt.service';
 })
 export class IgtTestComponent implements OnInit {
   // Dados do teste
-  saldoTotal: number = 0;
+  saldoTotal: number = 2000;
   tentativas: number = 0;
   maxTentativas: number = 100;
   
@@ -29,7 +29,7 @@ export class IgtTestComponent implements OnInit {
     
     // Limpar variáveis locais do componente
     this.ultimaEscolha = '';
-    this.saldoTotal = 0;
+    this.saldoTotal = 2000;
     this.tentativas = 0;
     this.ganho = 0;
     this.taxa = 0;

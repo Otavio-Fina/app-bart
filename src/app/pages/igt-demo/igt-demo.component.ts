@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class IgtDemoComponent implements OnInit {
   // Dados do teste
-  saldoTotal: number = 0;
+  saldoTotal: number = 2000;
   tentativas: number = 0;
   maxTentativas: number = 2;
   
@@ -21,10 +21,10 @@ export class IgtDemoComponent implements OnInit {
   mostrandoResultado: boolean = false;
   
   // Arrays de resultados para cada deck (cópia dos originais)
-  private constanteResultadosA = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
-  private constanteResultadosB = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
-  private constanteResultadosC = [{ganho: 50, taxa: 250}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
-  private constanteResultadosD = [{ganho: 50, taxa: 250}, {ganho: 50, taxa: 250}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
+  private constanteResultadosA = [{ganho: 100, taxa: 150}, {ganho: 100, taxa: 200}, {ganho: 100, taxa: 250}, {ganho: 100, taxa: 300}, {ganho: 100, taxa: 350}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
+  private constanteResultadosB = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
+  private constanteResultadosC = [{ganho: 50, taxa: 25}, {ganho: 50, taxa: 25}, {ganho: 50, taxa: 50}, {ganho: 50, taxa: 75}, {ganho: 50, taxa: 75}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
+  private constanteResultadosD = [{ganho: 50, taxa: 250}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
 
   private resultadosA = [...this.constanteResultadosA];
   private resultadosB = [...this.constanteResultadosB];
@@ -36,7 +36,7 @@ export class IgtDemoComponent implements OnInit {
   ngOnInit(): void {
     // Limpar variáveis locais do componente
     this.ultimaEscolha = '';
-    this.saldoTotal = 0;
+    this.saldoTotal = 2000;
     this.tentativas = 0;
     this.ganho = 0;
     this.taxa = 0;

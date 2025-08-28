@@ -15,14 +15,14 @@ export interface Tentativa {
 })
 export class IgtService {
   private tentativas: Tentativa[] = [];
-  private saldoTotal: number = 0;
+  private saldoTotal: number = 2000;
   private maxTentativas: number = 100;
   private tempoInicioEscolha: number = 0;
 
-  private constanteResultadosA = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
-  private constanteResultadosB = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
-  private constanteResultadosC = [{ganho: 50, taxa: 250}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
-  private constanteResultadosD = [{ganho: 50, taxa: 250}, {ganho: 50, taxa: 250}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
+  private constanteResultadosA = [{ganho: 100, taxa: 150}, {ganho: 100, taxa: 200}, {ganho: 100, taxa: 250}, {ganho: 100, taxa: 300}, {ganho: 100, taxa: 350}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
+  private constanteResultadosB = [{ganho: 100, taxa: 1250}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}, {ganho: 100, taxa: 0}];
+  private constanteResultadosC = [{ganho: 50, taxa: 25}, {ganho: 50, taxa: 25}, {ganho: 50, taxa: 50}, {ganho: 50, taxa: 75}, {ganho: 50, taxa: 75}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
+  private constanteResultadosD = [{ganho: 50, taxa: 250}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}, {ganho: 50, taxa: 0}];
 
 
   resultadosA = [ ...this.constanteResultadosA]
@@ -170,7 +170,7 @@ export class IgtService {
   // Resetar teste
   resetarTeste(): void {
     this.tentativas = new Array(this.maxTentativas).fill(null);
-    this.saldoTotal = 0;
+    this.saldoTotal = 2000;
     this.tempoInicioEscolha = 0
     
     // Recarregar arrays de resultados para garantir que estejam completos
