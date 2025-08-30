@@ -22,6 +22,18 @@ export class ResultsComponent {
   totalEarnings = computed(() => this.bart.balloonResults().reduce((sum, b) => sum + b.points, 0));
   maxPumpsInBalloon = computed(() => Math.max(...this.bart.balloonResults().map(b => b.pumps), 0));
   minPumpsInBalloon = computed(() => Math.min(...this.bart.balloonResults().map(b => b.pumps), 0));
+  
+  // Time statistics
+  totalTimeMs = computed(() => this.bart.balloonResults().reduce((sum, b) => sum + b.totalTimeMs, 0));
+  averageTimeMs = computed(() => this.totalBalloons() > 0 ? this.totalTimeMs() / this.totalBalloons() : 0);
+  maxTimeMs = computed(() => Math.max(...this.bart.balloonResults().map(b => b.totalTimeMs), 0));
+  minTimeMs = computed(() => Math.min(...this.bart.balloonResults().map(b => b.totalTimeMs), 0));
+  
+  // Time between last pump and decision
+  totalDecisionTimeMs = computed(() => this.bart.balloonResults().reduce((sum, b) => sum + b.timeMs, 0));
+  averageDecisionTimeMs = computed(() => this.totalBalloons() > 0 ? this.totalDecisionTimeMs() / this.totalBalloons() : 0);
+  maxDecisionTimeMs = computed(() => Math.max(...this.bart.balloonResults().map(b => b.timeMs), 0));
+  minDecisionTimeMs = computed(() => Math.min(...this.bart.balloonResults().map(b => b.timeMs), 0));
 
   restart() {
     this.bart.restart();
@@ -32,14 +44,13 @@ export class ResultsComponent {
     const results = this.bart.balloonResults();
 
     // Cabeçalho
-    let csv = 'Balao,Pumps,Coletado,Explodiu,Pontos (centavos),Pontos (USD)\n';
+    let csv = 'Balao,Pumps,Coletado,Explodiu,Pontos (centavos),Pontos (USD),Tempo Decisao (ms),Tempo Total (ms)\n';
 
     // Linhas
     results.forEach((r) => {
       const usd = (r.points / 100).toFixed(2);
-      csv += `${r.balloonIndex + 1},${r.pumps},${r.collected ? 'Sim' : 'Não'},${r.exploded ? 'Sim' : 'Não'},${r.points},$${usd}\n`;
+      csv += `${r.balloonIndex + 1},${r.pumps},${r.collected ? 'Sim' : 'Não'},${r.exploded ? 'Sim' : 'Não'},${r.points},$${usd},${r.timeMs},${r.totalTimeMs}\n`;
     });
-
 
     return csv;
   }

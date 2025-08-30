@@ -21,6 +21,8 @@ interface BalloonState {
   explosionThreshold: number; // random threshold at which balloon pops
   pointsInBalloon: number; // current points accumulated for this balloon
   exploded: boolean;
+  pumpTimestamps: number[]; // array of timestamps for each pump
+  startTime: number; // timestamp when balloon attempt started
 }
 
 interface BalloonResult {
@@ -29,6 +31,8 @@ interface BalloonResult {
   collected: boolean;
   points: number;
   exploded: boolean;
+  timeMs: number; // time in milliseconds between last pump and decision
+  totalTimeMs: number; // total time from attempt start to decision
 }
 
 @Injectable({ providedIn: 'root' })
@@ -94,6 +98,8 @@ export class BartService {
       explosionThreshold: threshold,
       pointsInBalloon: 0,
       exploded: false,
+      pumpTimestamps: [],
+      startTime: Date.now(), // Initialize startTime
     };
   }
 
@@ -111,6 +117,7 @@ export class BartService {
     if (b.exploded) return;
 
     b.pumpCount += 1;
+    b.pumpTimestamps.push(Date.now()); // Add timestamp for the current pump
     b.pointsInBalloon += this.centsPerPump();
 
     if (this.shouldExplode(b.pumpCount)) {
@@ -124,7 +131,9 @@ export class BartService {
         pumps: b.pumpCount,
         collected: false,
         points: 0,
-        exploded: true
+        exploded: true,
+        timeMs: b.pumpCount > 0 ? Date.now() - b.pumpTimestamps[b.pumpTimestamps.length - 1] : Date.now() - b.startTime, // Time since last pump or start
+        totalTimeMs: Date.now() - b.startTime, // Total time from attempt start
       };
       this.balloonResultsSig.set([...this.balloonResultsSig(), result]);
       
@@ -133,6 +142,14 @@ export class BartService {
         this.popSound.currentTime = 0; // Reset to beginning
         this.popSound.play().catch(err => console.log('Audio play failed:', err));
       }
+      
+      // Disparar evento com informações de tempo
+      this.dispararEventoBalaoEstourou('balloon_exploded', {
+        balloonIndex: b.index,
+        pumps: b.pumpCount,
+        timeMs: result.timeMs,
+        totalTimeMs: result.totalTimeMs
+      });
     }
     this.balloonSig.set(b);
   }
@@ -156,9 +173,20 @@ export class BartService {
       pumps: b.pumpCount,
       collected: true,
       points: b.pointsInBalloon,
-      exploded: false
+      exploded: false,
+      timeMs: b.pumpCount > 0 ? Date.now() - b.pumpTimestamps[b.pumpTimestamps.length - 1] : Date.now() - b.startTime, // Time since last pump or start
+      totalTimeMs: Date.now() - b.startTime, // Total time from attempt start
     };
     this.balloonResultsSig.set([...this.balloonResultsSig(), result]);
+    
+    // Disparar evento com informações de tempo
+    this.dispararEventoPontosColetados('points_collected', {
+      balloonIndex: b.index,
+      pumps: b.pumpCount,
+      points: b.pointsInBalloon,
+      timeMs: result.timeMs,
+      totalTimeMs: result.totalTimeMs
+    });
     
     this.totalPointsSig.set(this.totalPointsSig() + b.pointsInBalloon);
     this.nextBalloon();
