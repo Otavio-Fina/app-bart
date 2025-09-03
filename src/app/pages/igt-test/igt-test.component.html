@@ -9,15 +9,15 @@
     </div>
     
     <!-- Saldo Total centralizado -->
-    <div class="bg-white/80 backdrop-blur-md -mr-6 rounded-lg shadow-lg p-4">
+    <div class="bg-white/80 backdrop-blur-md -mr-8 rounded-lg shadow-lg p-4">
       <h2 class="text-lg font-semibold text-gray-700 mb-1">Saldo Total</h2>
       <div [ngClass]="saldoTotal > 0 ? 'text-green-600' : saldoTotal < 0 ? 'text-red-600' : 'text-gray-600'" class="text-3xl font-bold duration-500 ease-in-out transition-all">${{ saldoTotal.toLocaleString() }}</div>
     </div>
     
     <!-- Tentativas à direita -->
-    <div class="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-4">
-      <h2 class="text-lg font-semibold text-gray-700 mb-1">Tentativas</h2>
-      <div class="text-2xl font-bold text-blue-600">{{ tentativas }}/{{ maxTentativas }}</div>
+    <div class="bg-transparent backdrop-blur-md rounded-lg p-4">
+      <h2 class="text-lg font-semibold text-transparent mb-1">Tentativas</h2>
+      <div class="text-2xl font-bold text-transparent">{{ tentativas }}/{{ maxTentativas }}</div>
     </div>
   </div>
 
@@ -34,7 +34,6 @@
           <div class="text-3xl font-bold text-green-600">+${{ ganho }}</div>
           <p class="text-green-600 mt-2">Deck {{ ultimaEscolha }}</p>
         </div>
-        <p class="absolute right-2 bottom-2 text-xs text-gray-400">{{tentativas}}</p>
       </div>
 
       <!-- Card de Taxa (só aparece se houver taxa) -->
@@ -47,7 +46,6 @@
           <div class="text-3xl font-bold text-red-600">-${{ taxa }}</div>
           <p class="text-red-600 mt-2">Deck {{ ultimaEscolha }}</p>
         </div>
-        <p class="absolute right-2 bottom-2 text-xs text-gray-400">{{tentativas}}</p>
       </div>
     </div>
   </div>
