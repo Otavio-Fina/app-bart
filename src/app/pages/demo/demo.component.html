@@ -22,8 +22,8 @@
 
     <!-- Scores -->
     <div class="flex gap-4">
-      <div class="bg-gray-100 rounded p-2">Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
-      <div class="bg-gray-100 rounded p-2">Pontos Totais: <strong>{{ (bart.totalPoints() / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
+      <div class="bg-gray-100 rounded p-2">Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon) | currency:'USD':'symbol':'1.0-0' }}</strong></div>
+      <div class="bg-gray-100 rounded p-2">Pontos Totais: <strong>{{ (bart.totalPoints()) | currency:'USD':'symbol':'1.0-0' }}</strong></div>
     </div>
   </div>
 
