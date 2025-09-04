@@ -46,7 +46,7 @@ export class BartService {
   private bankSound: HTMLAudioElement | null = null;
 
   // cents per pump
-  centsPerPump = signal<number>(10);
+  centsPerPump = signal<number>(1);
 
   private totalPointsSig = signal<number>(0);
   totalPoints = computed(() => this.totalPointsSig());
@@ -60,19 +60,19 @@ export class BartService {
   // current balloon state
   constructor() {
     // load persisted config
-    const saved = localStorage.getItem(this.STORAGE_KEY);
-    if (saved) {
-      try {
-        const cfg: Partial<Config> = JSON.parse(saved);
-        if (cfg.totalBalloons) this.totalBalloons.set(cfg.totalBalloons);
-        if (cfg.maxPumpThreshold) this.maxPumpThreshold.set(cfg.maxPumpThreshold);
-        if (cfg.centsPerPump) this.centsPerPump.set(cfg.centsPerPump);
-      } catch {
+    //const saved = localStorage.getItem(this.STORAGE_KEY);
+    //if (saved) {
+    //  try {
+    //    const cfg: Partial<Config> = JSON.parse(saved);
+    //    if (cfg.totalBalloons) this.totalBalloons.set(cfg.totalBalloons);
+    //    if (cfg.maxPumpThreshold) this.maxPumpThreshold.set(cfg.maxPumpThreshold);
+    //    if (cfg.centsPerPump) this.centsPerPump.set(cfg.centsPerPump);
+    //  } catch {
         /* ignore */
-      }
+    //  }
 
       
-    }
+    //}
 
     // Initialize pop sound
     this.popSound = new Audio('/pop.mp3');

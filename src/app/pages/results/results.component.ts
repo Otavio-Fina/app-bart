@@ -48,8 +48,8 @@ export class ResultsComponent {
 
     // Linhas
     results.forEach((r) => {
-      const usd = (r.points / 100).toFixed(2);
-      csv += `${r.balloonIndex + 1},${r.pumps},${r.collected ? 'Sim' : 'Não'},${r.exploded ? 'Sim' : 'Não'},${r.points},$${usd},${r.timeMs},${r.totalTimeMs}\n`;
+      const usd = (r.points);
+      csv += `${r.balloonIndex + 1},${r.pumps},${r.collected ? 'Sim' : 'Nao'},${r.exploded ? 'Sim' : 'Nao'},${r.points},$${usd},${r.timeMs},${r.totalTimeMs}\n`;
     });
 
     return csv;

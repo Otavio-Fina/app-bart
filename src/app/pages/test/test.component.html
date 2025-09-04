@@ -31,9 +31,9 @@
   <!-- Tags fixas de pontuação -->
   <div class="fixed bottom-28 left-1/2 transform -translate-x-1/2 z-50">
     <div class="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border px-5 py-3 flex items-center gap-4 text-lg">
-      <div>Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
+      <div>Balão Atual: <strong>{{ (bart.balloon().pointsInBalloon) | currency:'USD':'symbol':'1.0-0' }}</strong></div>
       <div class="h-4 w-px bg-gray-300"></div>
-      <div>Pontos Totais: <strong>{{ (bart.totalPoints() / 100) | currency:'USD':'symbol':'1.2-2' }}</strong></div>
+      <div>Pontos Totais: <strong>{{ (bart.totalPoints()) | currency:'USD':'symbol':'1.0-0' }}</strong></div>
     </div>
   </div>
 

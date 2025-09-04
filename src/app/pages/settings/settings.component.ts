@@ -19,7 +19,7 @@ export class SettingsComponent {
   form = this.fb.nonNullable.group({
     totalBalloons: [this.bart.totalBalloons(), [Validators.required, Validators.min(1)]],
     maxPumpThreshold: [this.bart.maxPumpThreshold(), [Validators.required, Validators.min(1)]],
-    centsPerPump: [this.bart.centsPerPump() / 100, [Validators.required, Validators.min(0.01)]],
+    centsPerPump: [this.bart.centsPerPump(), [Validators.required, Validators.min(1)]],
   });
 
   save() {
