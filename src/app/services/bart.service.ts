@@ -38,7 +38,7 @@ interface BalloonResult {
 @Injectable({ providedIn: 'root' })
 export class BartService {
   // configuration signals (could be exposed to admin page)
-  totalBalloons = signal<number>(27);
+  totalBalloons = signal<number>(30);
   maxPumpThreshold = signal<number>(128);
 
   private readonly STORAGE_KEY = 'bart_config';
